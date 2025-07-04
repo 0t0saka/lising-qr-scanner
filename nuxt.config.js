@@ -41,7 +41,24 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+     '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+  auth: {
+  strategies: {
+    google: {
+        clientId: '<623932123681-fv05qtbglemuo6d4cebo5u8d3vcb5719.apps.googleusercontent.com>',
+        codeChallengeMethod: '',
+        responseType: 'code',
+        endpoints: {
+          token: 'http://localhost:3000/signin', // your backend url to resolve your auth with google and give you the token back
+          userInfo: 'http://localhost:3000/auth/signin' // your endpoint to get the user info after you received the token
+        },
+      },
+  }
+},
+
+
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

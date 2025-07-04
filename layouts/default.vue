@@ -105,7 +105,7 @@ export default {
         {
           icon: 'mdi-chart-bubble',
           title: 'Sign in',
-          to: '/signin'
+          to: '/auth/signin'
         }
       ],
       miniVariant: false,
