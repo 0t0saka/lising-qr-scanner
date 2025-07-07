@@ -1,4 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
+import colors from "vuetify/es5/util/colors";
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -6,29 +6,25 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Andrey',
-    title: 'QR Code Scanner',
+    titleTemplate: "%s - Andrey",
+    title: "QR Code Scanner",
     htmlAttrs: {
-      lang: 'en'
+      lang: "en",
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "" },
+      { name: "format-detection", content: "telephone=no" },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -36,33 +32,44 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
+    "@nuxtjs/vuetify",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
-  ],
+  modules: ["@nuxtjs/axios", "@nuxtjs/auth-next"],
   auth: {
-  strategies: {
-    google: {
-        clientId: '<623932123681-fv05qtbglemuo6d4cebo5u8d3vcb5719.apps.googleusercontent.com>',
-        codeChallengeMethod: '',
-        responseType: 'code',
+    redirect: {
+      login: "/auth/signin", //redirect user when not connected
+      logout: "/auth/signin", // redirect user when logout
+      callback: "/auth/callback", // callback url after login
+      home: "/", //after login redirect
+    },
+    autoFetchUser: false,
+    strategies: {
+      google: {
+        clientId:
+          "623932123681-fv05qtbglemuo6d4cebo5u8d3vcb5719.apps.googleusercontent.com",
+        scheme: "oauth2",
         endpoints: {
-          token: 'http://localhost:3000/signin', // your backend url to resolve your auth with google and give you the token back
-          userInfo: 'http://localhost:3000/auth/signin' // your endpoint to get the user info after you received the token
+          //authorization: "https://accounts.google.com/o/oauth2/auth",
+          userInfo: "https://www.googleapis.com/oauth2/v3/userinfo",
         },
+        token: {
+          property: "access_token",
+          type: "Bearer",
+          maxAge: 1800,
+        },
+        responseType: "token id_token",
+        scope: ["openid", "profile", "email"],
+        redirectUri: "http://localhost:3000/auth/callback",
+        codeChallengeMethod: "",
       },
-  }
-},
-
-
+    },
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ["~/assets/variables.scss"],
     theme: {
       dark: true,
       themes: {
@@ -73,13 +80,12 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
+          success: colors.green.accent3,
+        },
+      },
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
-}
+  build: {},
+};
