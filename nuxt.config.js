@@ -51,7 +51,7 @@ export default {
           "623932123681-fv05qtbglemuo6d4cebo5u8d3vcb5719.apps.googleusercontent.com",
         scheme: "oauth2",
         endpoints: {
-          //authorization: "https://accounts.google.com/o/oauth2/auth",
+          authorization: "https://accounts.google.com/o/oauth2/auth",
           userInfo: "https://www.googleapis.com/oauth2/v3/userinfo",
         },
         token: {
