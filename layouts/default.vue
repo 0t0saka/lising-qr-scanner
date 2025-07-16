@@ -108,7 +108,13 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Sign in',
           to: '/auth/signin'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'QR',
+          to: '/QrScan'
         }
+
       ],
       miniVariant: false,
       right: true,
