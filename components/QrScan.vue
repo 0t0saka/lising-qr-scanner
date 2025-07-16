@@ -16,7 +16,7 @@ function onScanSuccess(decodedText, decodedResult) {
 }
 
 function onScanFailure(error) {
-  // optional: console.warn(`QR scan error: ${error}`);
+  
 }
 
 onMounted(() => {
